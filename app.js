@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var util = require('util');
 var fs = require('fs');
+var errorHandler = require('./app/middleware/errorHandler');
 
 var routesDir = './app/routes/';
 var port = process.env.port || 3000;
@@ -17,7 +18,7 @@ app.use(cors());
 var routes = fs.readdirSync(routesDir);
 routes.forEach(function(route) {
 	var routePath = routesDir + route;
-	require(routePath)(app);
+	require(routePath)(app, errorHandler);
 });
 
 app.listen(port, function() {
