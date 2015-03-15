@@ -1,0 +1,15 @@
+{
+  "name": "MI9-node-app",
+  "description": "MI9 coding test node app",
+  "version": "0.0.1",
+  "author": "Sambaran Roy <sambaranr@gmail.com>",
+  "dependencies": {
+    "express": "~4.12.2",
+    "cors": "~2.5.3",
+    "body-parser": "~1.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  }
+}
