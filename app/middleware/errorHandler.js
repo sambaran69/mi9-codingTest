@@ -2,6 +2,7 @@
 
 module.exports = function (err, req, res, next) {
   //'next' unused but needed for express.
+
   if(!err) return;
   var errorResponse = {};
   var errorString = err.message.split(':');
