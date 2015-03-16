@@ -4,12 +4,8 @@ module.exports = function (err, req, res, next) {
   //'next' unused but needed for express.
 
   if(!err) return;
-  var errorResponse = {};
-  errorResponse.status = err.status || err.statusCode || 400;
-  errorResponse.code = err.code || errorResponse.status;
-  errorResponse.error = err.message;
-  errorResponse.message = err.message || 'Server error occurred.';
-  errorResponse.stack = err.stack;
+  var errorResponse = err.message || 'Server error occurred.';
+  var errorStatus = err.status || err.statusCode || 400;
 
-  res.status(errorResponse.status).json(errorResponse);
+  res.status(errorStatus).json({ 'error': errorResponse });
 };
