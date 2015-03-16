@@ -2,7 +2,7 @@
 
 module.exports = function(app, callback) {
   app.post('/', function(req, res, next) {
-    if (!req.body || !req.body.payload) {
+    if (!req.body || !req.body.payload || !isArray(req.body.payload)) {
       callback(new Error('Could not decode request: JSON parsing failed'), req, res, next);
     }
     else {
@@ -29,4 +29,8 @@ module.exports = function(app, callback) {
 
 function validShowObject(show) {
   return show.hasOwnProperty('drm') && show.hasOwnProperty('episodeCount');
+}
+
+function isArray(obj) {
+  return Object.prototype.toString.call(obj) === '[object Array]'; 
 }
