@@ -15,11 +15,11 @@ describe('showsRoute', function() {
 	  it('should map the response correctly',function(done){
 	  	request
 	  		.post('/')
-	  		.send({})
+	  		.send(testData)
 	  		.expect(200)
 	  		.end(function(err,res) {
-        	expect(res.body).to.have.property('Response');
-        	expect(res.body.Response).to.be.a('array');
+        	expect(res.body).to.have.property('response');
+        	expect(res.body.response).to.be.a('array');
 	  			done();
 	  		});
 	  });
@@ -29,9 +29,9 @@ describe('showsRoute', function() {
 	  		.send(testData)
 	  		.expect(200)
 	  		.end(function(err,res) {
-        	expect(res.body).to.have.property('Response');
-        	expect(res.body.Response).to.be.a('array');
-        	expect(res.body.Response.length).to.be(3);        	
+        	expect(res.body).to.have.property('response');
+        	expect(res.body.response).to.be.a('array');
+        	expect(res.body.response.length).to.be.equal(3);        	
 	  			done();
 	  		});
 	  });
@@ -41,10 +41,10 @@ describe('showsRoute', function() {
 	  		.send(testData)
 	  		.expect(200)
 	  		.end(function(err,res) {
-        	expect(res.body).to.have.property('Response');
-        	expect(res.body.Response[0].title).toEqual("16 Kids and Counting");
-        	expect(res.body.Response[1].title).toEqual("The Taste");
-        	expect(res.body.Response[2].title).toEqual("Thunderbirds");        	        	
+        	expect(res.body).to.have.property('response');
+        	expect(res.body.response[0].title).to.be.equal("16 Kids and Counting");
+        	expect(res.body.response[1].title).to.be.equal("The Taste");
+        	expect(res.body.response[2].title).to.be.equal("Thunderbirds");        	        	
 	  			done();
 	  		});
 	  });
@@ -54,7 +54,8 @@ describe('showsRoute', function() {
 	  		.send({})
 	  		.expect(400)
 	  		.end(function(err,res) {
-					expect(res.status).toEqual(400);
+					expect(res.body.status).to.be.equal(400);
+					expect(res.body.message).to.be.equal('Could not decode request: JSON parsing failed');				
 	  			done();
 	  		});
 	  });	

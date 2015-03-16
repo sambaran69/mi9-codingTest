@@ -6,8 +6,8 @@ module.exports = function (err, req, res, next) {
   var errorResponse = {};
   errorResponse.status = err.status || err.statusCode || 400;
   errorResponse.code = err.code || errorResponse.status;
-  errorResponse.message = err.friendlyMessage || 'Server error occurred.';
-  errorResponse.developerMessage = err.message || 'Undefined server error.';
+  errorResponse.message = err.message || 'Server error occurred.';
+  errorResponse.developerMessage = err.friendlyMessage || 'Undefined server error.';
   errorResponse.stack = err.stack;
 
   res.status(errorResponse.status).json(errorResponse);
