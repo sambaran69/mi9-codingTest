@@ -15,6 +15,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(express.static(__dirname + '/public'));
+
+app.get('/', function(request, response) {
+  response.send('MI9 Coding Test App by Sambaran Roy!');
+});
 var routes = fs.readdirSync(routesDir);
 routes.forEach(function(route) {
 	var routePath = routesDir + route;
