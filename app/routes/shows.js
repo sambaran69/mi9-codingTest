@@ -3,7 +3,7 @@
 module.exports = function(app, callback) {
   app.post('/', function(req, res, next) {
     if (!req.body || !req.body.payload || !isArray(req.body.payload)) {
-      callback(new Error('Could not decode request: JSON parsing failed'), req, res, next);
+      callback(new Error('JSON parsing failed'), req, res, next);
     }
     else {
       var shows = req.body.payload;

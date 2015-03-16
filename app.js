@@ -26,6 +26,7 @@ routes.forEach(function(route) {
 });
 
 app.use(responseFormatter);
+app.use(errorHandler);
 
 app.listen(app.get('port'), function() {
 	console.log(util.format('Server listening on port %d.', app.get('port')));
