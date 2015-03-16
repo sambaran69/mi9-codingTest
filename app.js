@@ -22,5 +22,5 @@ routes.forEach(function(route) {
 });
 
 app.listen(app.get('port'), function() {
-	console.log(util.format('Server listening on port %d.', port));
+	console.log(util.format('Server listening on port %d.', app.get('port')));
 });
