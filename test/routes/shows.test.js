@@ -48,16 +48,45 @@ describe('showsRoute', function() {
 	  			done();
 	  		});
 	  });
-	  it('should return response with status 400 for invalid request',function(done){
+	  it('should return response with status 400 for bad request - no data',function(done){
 	  	request
 	  		.post('/')
 	  		.send({})
 	  		.expect(400)
 	  		.end(function(err,res) {
-					expect(res.body.status).to.be.equal(400);
-					expect(res.body.message).to.be.equal('Could not decode request: JSON parsing failed');				
+					expect(res.body.error).to.be.equal('Could not decode request: JSON parsing failed');				
 	  			done();
 	  		});
-	  });	
+	  });
+	  it('should return response with status 400 for bad request - invalid JSON',function(done){
+	  	request
+	  		.post('/')
+	  		.send({ 'abcd': 'efgh' })
+	  		.expect(400)
+	  		.end(function(err,res) {
+					expect(res.body.error).to.be.equal('Could not decode request: JSON parsing failed');				
+	  			done();
+	  		});
+	  });
+	  it('should return response with status 400 for bad request - JSON with no array',function(done){
+	  	request
+	  		.post('/')
+	  		.send({ 'payload': 'no array value' })
+	  		.expect(400)
+	  		.end(function(err,res) {
+					expect(res.body.error).to.be.equal('Could not decode request: JSON parsing failed');				
+	  			done();
+	  		});
+	  });	  
+	  it('should return response with status 400 for bad request - invalid Path',function(done){
+	  	request
+	  		.post('/invalidPath')
+	  		.send({})
+	  		.expect(400)
+	  		.end(function(err,res) {
+					expect(res.body.error).to.be.equal('Could not decode request: File Not Found');				
+	  			done();
+	  		});
+	  });		    
 	});
 });
