@@ -3,6 +3,14 @@
   "description": "MI9 coding test node app",
   "version": "0.0.1",
   "author": "Sambaran Roy <sambaranr@gmail.com>",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sambaran69/mi9-codingTest"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },  
   "dependencies": {
     "express": "~4.12.2",
     "cors": "~2.5.3",
